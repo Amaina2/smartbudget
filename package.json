@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "npm --prefix server run dev",
+    "build": "npm --prefix client run build",
+    "install": "npm install --workspaces"
+  }
+}
