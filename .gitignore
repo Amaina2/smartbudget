@@ -1,0 +1,21 @@
+# Root ignores
+**/node_modules/
+**/dist/
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Runtime artifacts
+coverage/
+tmp/

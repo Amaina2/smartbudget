@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: smartbudget
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+
+  server:
+    build: ./server
+    ports:
+      - '5000:5000'
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: smartbudget
+      JWT_SECRET: change-me-in-production
+      CLIENT_ORIGIN: http://localhost:5173
+      NODE_ENV: development
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
